@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TRIZ - Innovative Problem Solving Tools for any industry - Effects database</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="https://daphnis.wbnusystem.net/~wbplus/websites/../scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+<link href="triz.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- PAGE HEADER START *this remains on all pages to be used as a menu-->
+
+<div class='menu-wrap'>
+	<div class='menu-inner'>
+	<ul>
+	<li class='title-text'>Effects <span>Database </span></li>
+	<li><a href='index.php'>Home</a ></li>
+	<li><a href='EDBabout.php'>About</a ></li>
+	<li><a href=EDBHelpGeneral.html>Help</a ></li>
+	</ul>
+	<div class='logo'><img src='images/OC_Banner_Logo.png' alt='triz'/></div>
+	</form>
+	</div>
+</div>
+
+<div id="main">
+
+
+<!--  EDB Welcome Page  -->
+<div class='colour triz-data-intro'>
+<div class='restrict-width'>
+	<div class='column full center triz-data-intro-title'>
+		<h1>Effects <span class='dark_OC_yellow'>Database</span></h1>
+        <P>Select the type of your effect query from the following:</P>
+	</div>
+<form action='index.php' method ='POST'>
+<input type='hidden' name='PageRequest' value='EDBselectTaskTarget'><div class='column third center'>
+<input type='submit' name='mode_button' value=Function class='button'> <P>e.g. Move Liquid</P>
+</div>
+<div class='column third center'>
+<input type='submit' name='mode_button' value=Parameter class='button'> <P>e.g. Increase Temperature</P>
+</div>
+<div class='column third center'>
+<input type='submit' name='mode_button' value=Transform class='button'> <P>e.g. Transform Mechanical Energy to Thermal Energy</P>
+</div>
+</form>
+<div class='clear'></div>
+</div>
+</div>
+
+
+
+
+<!-- Javascript to make radio button divs the same height -->
+<script type="text/javascript">
+<!--
+function setEqualHeight(selector, triggerContinuously) {
+
+    var elements = $(selector)
+    elements.css("height", "auto")
+    var max = Number.NEGATIVE_INFINITY;
+
+    $.each(elements, function(index, item) {
+        if ($(item).height() > max) {
+            max = $(item).height()
+        }
+    })
+
+    if ($( document ).width() < 720 ){
+       return
+    }else{
+       $(selector).css("height", max + "px")    
+    }
+
+
+    if (triggerContinuously) {
+       $(window).resize(function() {
+            setEqualHeight(selector, false)
+       })
+    }
+}
+$(window).load(function() {
+   setEqualHeight(".heightControl1",true);
+});
+-->
+</script>
+
+</body>

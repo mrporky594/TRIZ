@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TRIZ - Innovative Problem Solving Tools for any industry - Effects database</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="https://daphnis.wbnusystem.net/~wbplus/websites/../scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+<link href="triz.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- PAGE HEADER START *this remains on all pages to be used as a menu-->
+
+<div class='menu-wrap'>
+	<div class='menu-inner'>
+	<ul>
+	<li class='title-text'>Effects <span>Database </span></li>
+	<li><a href='index.php'>Home</a ></li>
+	<li><a href='EDBabout.php'>About</a ></li>
+	<li><a href=EDBHelpQuery.html>Help</a ></li>
+	</ul>
+	<div class='logo'><img src='images/OC_Banner_Logo.png' alt='triz'/></div>
+	</form>
+	</div>
+</div>
+
+<div id="main">
+
+
+
+
+<div class='colour triz-data-intro'>
+<div class='restrict-width'>
+	
+<div class='column full center triz-data-intro-title'>
+<h1>Function <span class='dark_OC_yellow'>Query</span></h1>
+<P> Select an Action and an Object on which the Action is to be performed. <br> Then click on the Submit Query button.</P>
+</div>
+<form action='index.php'; method='POST'>
+<input type='hidden' name='PageRequest' value='EDBdisplayQueryResults'>
+<div class='colour triz-data-search'>
+<div class='restrict-width'>
+	<div class='column three-fifth heightControl1 columnA'>
+    <h2>Action</h2>
+    <div class='columnA-inner'>
+   <UL>
+<LI><label><input type = 'radio' name='selected_task' value='11' class='triz-radio'/> Absorb</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='12' class='triz-radio'/> Accumulate</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='14' class='triz-radio'/> Bend</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='16' class='triz-radio'/> Break Down</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='17' class='triz-radio'/> Change Phase</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='18' class='triz-radio'/> Clean</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='19' class='triz-radio'/> Compress</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='20' class='triz-radio'/> Concentrate</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='21' class='triz-radio'/> Condense</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='22' class='triz-radio'/> Constrain</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='23' class='triz-radio'/> Cool</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='24' class='triz-radio'/> Deposit</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='25' class='triz-radio'/> Destroy</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='26' class='triz-radio'/> Detect</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='27' class='triz-radio'/> Dilute</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='29' class='triz-radio'/> Dry</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='30' class='triz-radio'/> Evaporate</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='31' class='triz-radio'/> Expand</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='32' class='triz-radio'/> Extract</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='33' class='triz-radio'/> Freeze</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='34' class='triz-radio'/> Heat</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='35' class='triz-radio'/> Hold</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='36' class='triz-radio'/> Join</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='38' class='triz-radio'/> Melt</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='39' class='triz-radio'/> Mix</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='40' class='triz-radio'/> Move</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='42' class='triz-radio'/> Orient</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='44' class='triz-radio'/> Produce</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='45' class='triz-radio'/> Protect</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='46' class='triz-radio'/> Purify</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='47' class='triz-radio'/> Remove</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='48' class='triz-radio'/> Resist</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='49' class='triz-radio'/> Rotate</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='50' class='triz-radio'/> Separate</label><LI>
+<LI><label><input type = 'radio' name='selected_task' value='52' class='triz-radio'/> Vibrate</label><LI>
+</UL>
+</div>
+</div>
+<div class='column fifth heightControl1 columnB'>
+<h2>Object</h2>
+<div class='columnB-inner'>
+<UL>
+<LI><label><input type = 'radio' name='selected_target' value='3' class='triz-radio'/> Divided Solid</label><LI>
+<LI><label><input type = 'radio' name='selected_target' value='6' class='triz-radio'/> Field</label><LI>
+<LI><label><input type = 'radio' name='selected_target' value='5' class='triz-radio'/> Gas</label><LI>
+<LI><label><input type = 'radio' name='selected_target' value='4' class='triz-radio'/> Liquid</label><LI>
+<LI><label><input type = 'radio' name='selected_target' value='2' class='triz-radio'/> Solid</label><LI>
+</UL>
+</div>
+</div>
+<div class='column fifth heightControl1 columnC'>
+<h2>Results Type</h2>
+<div class='columnC-inner'>
+<UL>
+<LI><label><input type='radio' name ='filter' value='effect' class='triz-radio'>Effect </label></LI>
+<LI><label><input type='radio' name ='filter' value='application' class='triz-radio'>Application </label></LI>
+<LI><label><input type='radio' name ='filter' value='both' checked='checked' class='triz-radio'>Both </label></LI>
+</UL>
+</div>
+</div>
+<p> <input type='hidden' name='Preserved_Mode_Name' value=Function />
+<div class='column full columnD'>
+<input type='submit' class='triz-submit' value='Submit Query'>
+</div>
+</form>
+
+<div class='clear'></div>
+</div>
+</div>
+   
+
+
+<!-- Javascript to make radio button divs the same height -->
+<script type="text/javascript">
+<!--
+function setEqualHeight(selector, triggerContinuously) {
+
+    var elements = $(selector)
+    elements.css("height", "auto")
+    var max = Number.NEGATIVE_INFINITY;
+
+    $.each(elements, function(index, item) {
+        if ($(item).height() > max) {
+            max = $(item).height()
+        }
+    })
+
+    if ($( document ).width() < 720 ){
+       return
+    }else{
+       $(selector).css("height", max + "px")    
+    }
+
+
+    if (triggerContinuously) {
+       $(window).resize(function() {
+            setEqualHeight(selector, false)
+       })
+    }
+}
+$(window).load(function() {
+   setEqualHeight(".heightControl1",true);
+});
+-->
+</script>
+
+</body>
