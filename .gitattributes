@@ -1,2 +1,0 @@
-*.pdf filter=lfs diff=lfs merge=lfs -text
-TRIZ[[:space:]]for[[:space:]]Engineers.pdf filter=lfs diff=lfs merge=lfs -text
