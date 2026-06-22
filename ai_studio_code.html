@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIZ Mega-Solver: Principles & Standards</title>
+    <style>
+        :root { --primary: #1e293b; --accent: #2563eb; --bg: #f8fafc; --panel: #ffffff; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--primary); margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { background: var(--primary); color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+        .grid { display: grid; grid-template-columns: 350px 1fr; gap: 20px; }
+        .card { background: var(--panel); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+        h2 { margin-top: 0; font-size: 1.2rem; color: var(--accent); border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        label { display: block; font-weight: 600; margin: 15px 0 5px; font-size: 0.85rem; }
+        select, button { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.9rem; }
+        button { background: var(--accent); color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.2s; }
+        button:hover { background: #1d4ed8; }
+        
+        .result-section { margin-bottom: 20px; animation: fadeIn 0.4s ease-out; }
+        .principle-tag { display: inline-block; background: #dbeafe; color: #1e40af; padding: 4px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; }
+        .standard-item { border-left: 4px solid #10b981; background: #f0fdf4; padding: 15px; margin: 10px 0; border-radius: 4px; }
+        .standard-id { font-weight: bold; color: #047857; }
+        
+        .hidden { display: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>TRIZ Mega-Navigator</h1>
+        <p>Technical & Physical Contradictions ➔ Inventive Principles ➔ 76 Standard Solutions</p>
+    </div>
+
+    <div class="grid">
+        <!-- Input Panel -->
+        <div class="card">
+            <h2>Problem Input</h2>
+            
+            <div id="tech-inputs">
+                <label>Improving Parameter (+)</label>
+                <select id="imp_param"></select>
+                
+                <label>Worsening Parameter (-)</label>
+                <select id="wor_param"></select>
+                <button onclick="solve('tech')">Solve Technical Contradiction</button>
+            </div>
+
+            <hr style="margin: 25px 0; border: 0; border-top: 1px solid #e2e8f0;">
+
+            <div id="phys-inputs">
+                <label>Physical Separation Strategy</label>
+                <select id="phys_strat">
+                    <option value="time">Separation in Time</option>
+                    <option value="space">Separation in Space</option>
+                    <option value="relation">Separation by Condition/Relation</option>
+                    <option value="system">Separation between System & Parts</option>
+                </select>
+                <button onclick="solve('phys')" style="background: #6366f1;">Solve Physical Contradiction</button>
+            </div>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="card">
+            <h2>Recommended Solutions</h2>
+            <div id="output-area">
+                <p style="color: #94a3b8; text-align: center; margin-top: 50px;">Select parameters and click solve to see the mapping.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// --- DATA FROM YOUR REPO / VBA LOGIC ---
+
+const PARAMETERS = ["Weight of moving object", "Weight of stationary object", "Length of moving object", "Length of stationary object", "Area of moving object", "Area of stationary object", "Volume of moving object", "Volume of stationary object", "Speed", "Force", "Stress or Pressure", "Shape", "Stability of object's composition", "Strength", "Duration of action of moving object", "Duration of action of stationary object", "Temperature", "Brightness", "Energy consumed by moving object", "Energy consumed by stationary object", "Power", "Loss of Energy", "Loss of substance", "Loss of Information", "Loss of Time", "Quantity of substance", "Reliability", "Accuracy of manufacturing", "Accuracy of measurement", "Factors acting on object", "Object-generated harmful factors", "Ease of manufacture", "Ease of operation", "Ease of repair", "Adaptability or versatility", "Device complexity", "Difficulty of detecting/measuring", "Extent of automation", "Productivity"];
+
+const PRINCIPLES = {
+    1: "Segmentation", 2: "Taking out", 3: "Local quality", 4: "Asymmetry", 5: "Merging", 10: "Preliminary action", 13: "The other way round", 15: "Dynamicity", 19: "Periodic action", 28: "Mechanics substitution", 35: "Parameter changes" 
+    // This would contain all 40 from your repo
+};
+
+// Paste your VBA Matrix logic here (Example subset)
+const VBA_MATRIX_DATA = {
+    "1-10": [1, 8, 15, 35], // Weight vs Force
+    "9-25": [15, 10, 18, 4], // Speed vs Time
+    "10-1": [8, 15, 29, 34]  // Force vs Weight
+};
+
+// Physical Contradiction Mapping (Mapping strategies to Principles)
+const PHYS_TO_PRINCIPLE = {
+    "time": [9, 10, 11, 15, 16, 18, 19, 20, 21],
+    "space": [1, 2, 3, 4, 7, 13, 17, 24, 26, 30],
+    "relation": [22, 23, 25, 27, 28, 29, 31, 32, 35],
+    "system": [1, 5, 6, 12, 13, 15]
+};
+
+// Bridge: Principles -> 76 Standard Solutions (Representative Mapping)
+const PRINCIPLE_TO_STANDARDS = {
+    1: ["1-1-1", "3-1-1"], 2: ["1-2-1", "1-2-2"], 10: ["1-1-4"], 15: ["2-1-1", "2-2-2", "2-4-1"], 35: ["5-1-1", "5-2-1"]
+};
+
+const STANDARDS_LIBRARY = {
+    "1-1-1": "Synthesis of a Su-Field: Form a system by adding a field or substance.",
+    "1-2-1": "Eliminating Harmful Interaction: Introduce a third substance to neutralize harm.",
+    "2-1-1": "Transition to a complex Su-Field: Increase efficiency by evolving the field structure.",
+    "3-1-1": "Transition to Bi- or Poly-system: Combine elements for synergistic effects.",
+    "5-1-1": "Introduction of Additives: Use cheap/available substances to modify properties."
+};
+
+// --- CORE LOGIC ---
+
+function init() {
+    const imp = document.getElementById('imp_param');
+    const wor = document.getElementById('wor_param');
+    PARAMETERS.forEach((p, i) => {
+        imp.add(new Option(`${i+1}. ${p}`, i+1));
+        wor.add(new Option(`${i+1}. ${p}`, i+1));
+    });
+}
+
+function solve(mode) {
+    let principleIds = [];
+    let title = "";
+
+    if (mode === 'tech') {
+        const i = document.getElementById('imp_param').value;
+        const w = document.getElementById('wor_param').value;
+        principleIds = VBA_MATRIX_DATA[`${i}-${w}`] || [1, 15, 35]; // Default fallback
+        title = `Technical Contradiction (${i} vs ${w})`;
+    } else {
+        const strat = document.getElementById('phys_strat').value;
+        principleIds = PHYS_TO_PRINCIPLE[strat];
+        title = `Physical Contradiction: ${strat.toUpperCase()}`;
+    }
+
+    renderResults(title, principleIds);
+}
+
+function renderResults(context, pIds) {
+    const output = document.getElementById('output-area');
+    let html = `<h3>Results for ${context}</h3>`;
+
+    pIds.forEach(pid => {
+        const pName = PRINCIPLES[pid] || `Principle ${pid}`;
+        html += `<div class="result-section">
+                    <div class="principle-tag">Principle ${pid}: ${pName}</div>`;
+        
+        // Find mapped standards
+        const standards = PRINCIPLE_TO_STANDARDS[pid] || [];
+        if (standards.length > 0) {
+            standards.forEach(sid => {
+                const sDesc = STANDARDS_LIBRARY[sid] || "Standard solution detail mapping required.";
+                html += `
+                    <div class="standard-item">
+                        <span class="standard-id">Standard ${sid}</span><br>
+                        <small>${sDesc}</small>
+                    </div>`;
+            });
+        } else {
+            html += `<p style="font-size: 0.8rem; color: #64748b; margin-left: 10px;">No direct Standard Solution mapping for this principle.</p>`;
+        }
+        html += `</div>`;
+    });
+
+    output.innerHTML = html;
+}
+
+window.onload = init;
+</script>
+</body>
+</html>
